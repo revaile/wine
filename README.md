@@ -225,38 +225,32 @@ Parameter yang akan di-tuning:
 
 ## Evaluasi
 
-Pada bagian ini, kami akan mengevaluasi performa model terbaik (Random Forest setelah hyperparameter tuning) menggunakan metrik klasifikasi yang sesuai. Metrik yang akan digunakan adalah Akurasi, Presisi, Recall, dan F1-Score.
+Dalam tahap evaluasi, metrik yang digunakan adalah `accuracy`
+Accuracy didapatkan dengan menghitung persentase dari jumlah prediksi yang benar dibagi dengan jumlah seluruh prediksi. Rumus:
 
-Penjelasan Metrik Evaluasi
+$$\text{Accuracy} = \frac{\text{TP + TN}}{\text{TN + TP + FN + FP}} \times 100\%$$
 
-1. Akurasi (Accuracy)
-Formula:
-​
-![image](https://github.com/user-attachments/assets/331da24d-6833-4778-9fb6-de3d3f0d1827)
+*Penjelasan*
+- TP (True Positive): Jumlah data positif yang diprediksi dengan benar sebagai positif.
+- TN (True Negative): Jumlah data negatif yang diprediksi dengan benar sebagai negatif.
+- FP (False Positive): Jumlah data negatif yang diprediksi secara tidak benar sebagai positif (Kesalahan Tipe I).
+- FN (False Negative): Jumlah data positif yang diprediksi secara tidak benar sebagai negatif (Kesalahan Tipe II).
 
-- Bagaimana metrik ini bekerja: Akurasi mengukur proporsi total prediksi yang benar. Ini adalah metrik yang paling intuitif, namun dapat menyesatkan pada dataset dengan kelas yang tidak seimbang.
-- Konteks Proyek: Akurasi akan memberikan gambaran umum tentang seberapa sering model memprediksi kualitas wine dengan benar, baik itu "good" atau "bad".
+Rumus ini memecah akurasi menjadi rasio antara data yang diklasifikasikan dengan benar (TP dan TN) dengan jumlah total data. Mengalikan dengan 100% mengubah rasio menjadi persentase.
 
-2. Presisi (Precision)
-Formula:
+Berikut hasil accuracy 5 buah model yang latih:
 
-![image](https://github.com/user-attachments/assets/761841b7-0aa4-47c0-98cf-26daee45968c)
+| Model | Accuracy |
+| ------ | ------ | 
+| RandomForest  | 71.18% |
+| Logistic Regression | 64.63% |
+| KNN | 57.21% |
 
-- Bagaimana metrik ini bekerja: Presisi mengukur proporsi prediksi positif yang benar dari semua prediksi positif yang dibuat oleh model. Ini menjawab pertanyaan: "Dari semua wine yang diprediksi sebagai 'good', berapa banyak yang benar-benar 'good'?" Presisi tinggi menunjukkan sedikit False Positives.
-- Konteks Proyek: Presisi untuk kelas "good" (kualitas baik) akan sangat penting bagi produsen, karena False Positive (memprediksi wine "good" padahal sebenarnya "bad") dapat merusak reputasi.
 
-3. Recall (Recall) / Sensitivitas
-Formula:
+Tabel 3. Hasil Accuracy
 
-![image](https://github.com/user-attachments/assets/c9008df8-04e3-41fc-9db4-a6d859b84668)
+![Plot Accuracy](https://i.ibb.co/wMPKmm4/akhirkata.png)
 
-- Bagaimana metrik ini bekerja: Recall mengukur proporsi kasus positif aktual yang berhasil diidentifikasi oleh model. Ini menjawab pertanyaan: "Dari semua wine yang sebenarnya 'good', berapa banyak yang berhasil diidentifikasi oleh model?" Recall tinggi menunjukkan sedikit False Negatives.
-- Konteks Proyek: Recall untuk kelas "good" juga penting. False Negative (memprediksi wine "bad" padahal sebenarnya "good") berarti kehilangan peluang untuk memasarkan wine berkualitas.
+Gambar 3. Visualisasi Accuracy Model
 
-4. F1-Score (F1-Score)
-Formula:
-
-![image](https://github.com/user-attachments/assets/f86edd07-9877-4b86-924b-eb3d92ff25fa)
-
-- Bagaimana metrik ini bekerja: F1-Score adalah rata-rata harmonik dari Presisi dan Recall. Ini memberikan keseimbangan antara Presisi dan Recall, dan sangat berguna ketika ada ketidakseimbangan kelas.
-- Konteks Proyek: F1-Score memberikan gambaran tunggal tentang performa model yang mempertimbangkan kedua metrik Presisi dan Recall, yang sangat relevan mengingat adanya penanganan imbalance data.
+Dilihat dari _Tabel 3. Hasil Accuracy_ dan _Gambar 3. Visualisasi Accuracy Model_ tersebut dapat diketahui bahwa model dengan algoritma _KNN_ memiliki Accuracy yang lebih tinggi dengan accuracy `90%` . Untuk itu model tersebut yang akan dipilih untuk digunakan. Diharapkan dengan model yang telah dikembangan dapat memprediksi kualitas apel dengan baik menggunakan _K-Nearest Neighbors (KNN)_. Alasan mengapa metode _KNN_ yang dipilih karena _KNN_ adalah algoritma yang sangat sederhana dibandingkan dengan _Extra Trees Classifier_. Hal ini membuatnya lebih mudah untuk dipahami, diimplementasikan, dan diinterpretasikan. _KNN_ juga tidak memiliki banyak parameter yang perlu dioptimalkan, sehingga lebih mudah untuk digunakan.
