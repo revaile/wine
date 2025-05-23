@@ -68,7 +68,7 @@ Dari eksplorasi data awal, dapat dilihat bahwa:
 
 ### Analisis Distribusi Fitur 
 
-![image](https://github.com/user-attachments/assets/95b9e5e6-da40-4c6d-96cf-7edad771786e)
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/1.png)
 
 Distribusi: fixed acidity
 
@@ -138,7 +138,7 @@ Distribusi: alcohol
 
 ### Analisis Distribusi Kualitas Wine
 
-![image](https://github.com/user-attachments/assets/d190b2fb-af4d-4946-8bdd-1284448cef69)
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/distribusi.png)
 
 Berdasarkan bar chart "Distribusi Kualitas Wine", terlihat jelas bahwa mayoritas sampel wine terkonsentrasi pada kualitas 5 dan 6, dengan jumlah sampel yang sangat dominan mendekati 500 untuk kualitas 5 dan sedikit di bawahnya untuk kualitas 6. Sementara itu, kualitas 7 memiliki jumlah sampel yang lebih sedikit, dan kualitas ekstrem seperti 3, 4, dan 8 hanya diwakili oleh sangat sedikit sampel, mengindikasikan ketidakseimbangan distribusi kelas yang signifikan dalam dataset ini.
 
