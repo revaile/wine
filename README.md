@@ -2,6 +2,9 @@
 
 ## Domain Proyek
 
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/1.png)
+
+
 Proyek ini berada dalam domain agroindustri dan industri minuman beralkohol, khususnya pada proses produksi wine (anggur). Industri wine secara global merupakan salah satu industri bernilai tinggi yang sangat bergantung pada kualitas produk. Kualitas wine dipengaruhi oleh berbagai faktor kimia dan fisik yang terjadi selama proses fermentasi, penyimpanan, dan produksi. Namun, pengujian kualitas wine umumnya dilakukan oleh para ahli wine (wine tasters) secara sensorik, yang bersifat subjektif, memakan waktu, dan mahal.
 
 Dalam beberapa tahun terakhir, pendekatan data-driven seperti Machine Learning mulai digunakan untuk mempercepat dan mengotomatiskan proses penilaian kualitas wine. Dengan memanfaatkan data kimia wine seperti kadar alkohol, keasaman, kandungan sulfur, dan pH, model prediktif dapat dibuat untuk mengklasifikasikan wine ke dalam kategori kualitas tertentu (baik atau buruk). Model ini membantu industri mengurangi biaya uji sensorik, mempercepat siklus produksi, serta menjaga konsistensi mutu produk.
@@ -68,7 +71,7 @@ Dari eksplorasi data awal, dapat dilihat bahwa:
 
 ### Analisis Distribusi Fitur 
 
-![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/1.png)
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/unvariate.png)
 
 Distribusi: fixed acidity
 
@@ -144,7 +147,7 @@ Berdasarkan bar chart "Distribusi Kualitas Wine", terlihat jelas bahwa mayoritas
 
 ### Matriks Korelasi
 
-![image](https://github.com/user-attachments/assets/8cfeeebc-311c-4cbe-874a-935658dc6701)
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/matrix.png)
 
 Matriks Korelasi menunjukkan hubungan antar fitur dan quality wine. Alcohol (0.48) dan sulphates (0.26) berkorelasi positif dengan kualitas. Sebaliknya, volatile acidity (-0.41), chlorides (-0.12), total sulfur dioxide (-0.18), dan density (-0.18) berkorelasi negatif. Fitur lainnya memiliki korelasi lemah atau tidak signifikan dengan quality.
 
