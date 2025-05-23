@@ -160,10 +160,7 @@ Tahap ini bertujuan untuk mempersiapkan data sebelum digunakan dalam pemodelan M
 - Kolom lainnya digunakan sebagai fitur (`X`).
 
 ### 2. Encoding Variabel Target
-- Variabel `quality` bersifat kategorikal (`"good"`, `"bad"`).
-- Menggunakan `LabelEncoder`, label ini diubah ke bentuk numerik:  
-  - `good` → 1  
-  - `bad` → 0
+- ubah data ke numerik
 
 ### 3. Penanganan Imbalance Data (SMOTE)
 - Karena distribusi kelas target tidak seimbang (lebih banyak "bad" daripada "good"), digunakan teknik oversampling SMOTE (Synthetic Minority Over-sampling Technique).
