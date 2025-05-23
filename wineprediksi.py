@@ -17,6 +17,8 @@ Original file is located at
 # Deskripsi Latar Belakang Proyek Prediksi Kualitas Apel dengan Machine
 
 Proyek ini bertujuan untuk mengembangkan model machine learning yang dapat memprediksi kualitas anggur merah (red wine) dengan lebih akurat dan efisien. Saat ini, penentuan kualitas anggur masih banyak dilakukan secara manual melalui uji rasa dan inspeksi fisik, yang memakan waktu, tenaga, serta rentan terhadap subjektivitas dan kesalahan manusia. Hal ini dapat menyebabkan inkonsistensi dalam proses penilaian kualitas, yang berdampak pada produsen, distributor, hingga konsumen akhir. Model prediksi kualitas anggur ini diharapkan mampu mengatasi permasalahan tersebut dengan menyediakan solusi otomatis yang lebih akurat, efisien, dan objektif. Dengan demikian, produsen dan distributor dapat meningkatkan konsistensi kualitas produk, meminimalkan kerugian, dan memberikan pengalaman yang lebih baik bagi konsumen.
+
+# Import Library
 """
 
 import pandas as pd
@@ -38,9 +40,25 @@ from sklearn import metrics
 from sklearn import preprocessing
 from google.colab import drive
 
+"""Fungsi: Mengimpor pustaka yang dibutuhkan untuk analisis data, visualisasi, machine learning, dan pengolahan dataset.
+
+* pandas, numpy: manipulasi data.
+
+* matplotlib, seaborn: visualisasi.
+
+* sklearn: preprocessing, model training, evaluasi.
+
+* drive: untuk akses file dari Google Drive (di Google Colab).
+
+**Mount Google Drive**
+"""
+
 drive.mount('/content/drive', force_remount=True)
 
-"""# Load Data"""
+"""Menghubungkan Google Drive agar dapat mengakses file archive.zip yang berisi dataset.
+
+# Load Data
+"""
 
 import zipfile
 
@@ -50,6 +68,8 @@ with zipfile.ZipFile(zip_path, 'r') as zip_ref:
     zip_ref.extractall("/content/drive/MyDrive/mesin/wine/")
 
 df = pd.read_csv("/content/drive/MyDrive/mesin/wine/WineQT.csv")
+
+"""Mengekstrak file archive.zip ke folder target di Google Drive agar file CSV bisa dibaca."""
 
 df.head()
 
@@ -74,7 +94,20 @@ pd.DataFrame({'Jumlah missing valueg':df.isna().sum()})
 
 print("\nJumlah data duplikat:", df.duplicated().sum())
 
-"""**Univariate Analysis**"""
+"""* info(): tipe data tiap kolom & missing values.
+
+* describe(): statistik deskriptif (mean, std, min, max, dll).
+
+* isna().sum(): menghitung nilai yang hilang.
+
+* duplicated().sum(): menghitung baris duplikat.
+
+**Univariate Analysis**
+
+* Visualisasi distribusi data (histogram) untuk setiap fitur numerik.
+
+* Mengetahui apakah data simetris, skewed, atau memiliki outlier.
+"""
 
 # Set style
 sns.set(style="whitegrid")
@@ -97,7 +130,12 @@ plt.xlabel('Quality')
 plt.ylabel('Count')
 plt.show()
 
-"""**Multivariate Analysis**"""
+"""**Multivariate Analysis**
+
+* Menampilkan korelasi antar fitur menggunakan heatmap.
+
+* Untuk melihat hubungan antar fitur dan dengan target.
+"""
 
 # Korelasi antar fitur
 plt.figure(figsize=(12, 10))
@@ -123,9 +161,27 @@ sns.pairplot(df[['alcohol', 'sulphates', 'citric acid', 'volatile acidity', 'qua
 plt.suptitle("Pairplot antar fitur utama dan kualitas", y=1.02)
 plt.show()
 
-"""# Data Preparation
+"""Multivariate Analysis – Boxplot
+
+Melihat bagaimana fitur-fitur penting berbeda pada tiap kualitas wine.
+
+Membantu memahami pengaruh fitur terhadap target.
+
+Multivariate – Pairplot
+
+Visualisasi hubungan antar beberapa fitur penting dengan warna berdasarkan kualitas.
+
+Membantu melihat pola dan hubungan nonlinear antar fitur.
+
+# Data Preparation
+
+pada bagianini menyaipakn data sebelum pelatihan
 
 **Encoding Fitur Kategori**
+
+Mengecek apakah ada fitur kategorikal.
+
+Jika ada, diubah ke bentuk numerik dengan one-hot encoding.
 """
 
 # Cek apakah ada fitur kategorikal
@@ -150,7 +206,14 @@ y = df_prep['quality']
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-"""**PCA**"""
+"""Menghapus kolom ID (tidak relevan).
+
+Memisahkan fitur (X) dan target (y).
+
+Melakukan standardisasi data (mengubah skala fitur agar punya mean 0 dan std 1), penting untuk PCA dan model seperti KNN.
+
+**PCA**
+"""
 
 # PCA untuk mencari jumlah komponen optimal
 pca = PCA(n_components=0.95)  # Cukup untuk menjelaskan 95% varians
@@ -159,10 +222,23 @@ X_pca = pca.fit_transform(X_scaled)
 # Cek berapa banyak komponen yang terpilih
 print(f"Jumlah komponen PCA yang dipakai: {X_pca.shape[1]}")
 
+"""Mengurangi dimensi fitur menggunakan PCA.
+
+n_components=0.95 berarti hanya mengambil komponen utama yang menjelaskan 95% varians data.
+
+Meringankan kompleksitas model dan meningkatkan performa.
+
+# Split Data
+"""
+
 # Split data menjadi train dan test
 X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.2, random_state=42, stratify=y)
 
-"""# Modeling
+"""Membagi data ke dalam train-test (80:20) untuk pelatihan dan evaluasi model.
+
+stratify=y: menjaga proporsi distribusi kelas tetap seimbang.
+
+# Modeling
 
 **Logistic Regression**
 """
@@ -170,6 +246,13 @@ X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.2, ran
 # Logistic Regression
 lr = LogisticRegression(max_iter=1000)
 lr.fit(X_train, y_train)
+
+"""Membuat model klasifikasi menggunakan Logistic Regression.
+
+max_iter=1000: Menentukan maksimum iterasi saat training, karena data multiklas dapat memerlukan iterasi lebih banyak agar konvergen.
+
+fit(): Melatih model dengan data latih.
+"""
 
 # Prediksi
 y_pred_lr = lr.predict(X_test)
@@ -187,6 +270,13 @@ plt.title("Confusion Matrix - Logistic Regression")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
+
+"""Melakukan prediksi terhadap data uji menggunakan model Logistic Regression.
+
+Menampilkan akurasi dan metrik evaluasi lainnya (precision, recall, f1-score) untuk setiap label kelas.
+
+Visualisasi confusion matrix untuk melihat kesalahan klasifikasi antar kelas.
+"""
 
 # K-Nearest Neighbors
 knn = KNeighborsClassifier(n_neighbors=5)
@@ -209,6 +299,13 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
 
+"""Melakukan prediksi terhadap data uji menggunakan model Logistic Regression.
+
+Menampilkan akurasi dan metrik evaluasi lainnya (precision, recall, f1-score) untuk setiap label kelas.
+
+Visualisasi confusion matrix untuk melihat kesalahan klasifikasi antar kelas.
+"""
+
 # Random Forest
 rf = RandomForestClassifier(n_estimators=100, random_state=42)
 rf.fit(X_train, y_train)
@@ -230,7 +327,14 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
 
-"""# Evaluate Model"""
+"""Melakukan prediksi terhadap data uji menggunakan model Logistic Regression.
+
+Menampilkan akurasi dan metrik evaluasi lainnya (precision, recall, f1-score) untuk setiap label kelas.
+
+Visualisasi confusion matrix untuk melihat kesalahan klasifikasi antar kelas.
+
+# Evaluate Model
+"""
 
 # Ringkasan akurasi model
 model_names = ['Logistic Regression', 'KNN', 'Random Forest']
@@ -242,3 +346,10 @@ accuracies = [
 
 summary_df = pd.DataFrame({'Model': model_names, 'Akurasi': accuracies})
 print(summary_df.sort_values(by='Akurasi', ascending=False))
+
+"""Random Forest adalah model dengan performa terbaik di antara ketiganya, dengan akurasi sekitar 71.18%.
+
+Logistic Regression berada di posisi kedua dengan akurasi sekitar 64.63%.
+
+KNN memiliki akurasi paling rendah, sekitar 57.21%.
+"""
