@@ -249,8 +249,8 @@ Berikut hasil accuracy 5 buah model yang latih:
 
 Tabel 3. Hasil Accuracy
 
-![Plot Accuracy](https://i.ibb.co/wMPKmm4/akhirkata.png)
+![Plot Accuracy](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/eval.png)
 
-Gambar 3. Visualisasi Accuracy Model
+Dilihat dari Tabel Hasil Accuracy dan Gambar Visualisasi Accuracy Model, dapat diketahui bahwa model dengan algoritma Random Forest memiliki nilai akurasi tertinggi yaitu 71.18%. Oleh karena itu, model ini dipilih sebagai model terbaik untuk digunakan dalam memprediksi kualitas Wine.
 
-Dilihat dari _Tabel 3. Hasil Accuracy_ dan _Gambar 3. Visualisasi Accuracy Model_ tersebut dapat diketahui bahwa model dengan algoritma _KNN_ memiliki Accuracy yang lebih tinggi dengan accuracy `90%` . Untuk itu model tersebut yang akan dipilih untuk digunakan. Diharapkan dengan model yang telah dikembangan dapat memprediksi kualitas apel dengan baik menggunakan _K-Nearest Neighbors (KNN)_. Alasan mengapa metode _KNN_ yang dipilih karena _KNN_ adalah algoritma yang sangat sederhana dibandingkan dengan _Extra Trees Classifier_. Hal ini membuatnya lebih mudah untuk dipahami, diimplementasikan, dan diinterpretasikan. _KNN_ juga tidak memiliki banyak parameter yang perlu dioptimalkan, sehingga lebih mudah untuk digunakan.
+Model Random Forest dipilih karena memiliki performa yang paling unggul dibandingkan model lainnya seperti Logistic Regression dan K-Nearest Neighbors (KNN). Selain memberikan akurasi yang lebih tinggi, Random Forest juga dikenal tangguh terhadap overfitting dan mampu menangani data dengan dimensi yang kompleks secara efektif.
