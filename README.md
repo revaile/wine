@@ -177,36 +177,88 @@ Berdasarkan bar chart "Distribusi Kualitas Wine", terlihat jelas bahwa mayoritas
 
 Matriks Korelasi menunjukkan hubungan antar fitur dan quality wine. Alcohol (0.48) dan sulphates (0.26) berkorelasi positif dengan kualitas. Sebaliknya, volatile acidity (-0.41), chlorides (-0.12), total sulfur dioxide (-0.18), dan density (-0.18) berkorelasi negatif. Fitur lainnya memiliki korelasi lemah atau tidak signifikan dengan quality.
 
+### Analisis Boxplot Karakteristik Kimia terhadap Kualitas Wine
 ![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/mulvariate1.png)
+
+# Analisis Boxplot Karakteristik Kimia terhadap Kualitas Wine
+
+Gambar berikut menunjukkan empat boxplot yang menggambarkan hubungan antara beberapa variabel kimia dan skor quality wine. Setiap boxplot memvisualisasikan distribusi data berdasarkan skor kualitas wine, yang umumnya berada pada rentang 3 hingga 8.
+
+## 1.Alcohol vs Quality  
+- Kadar alkohol cenderung meningkat seiring dengan naiknya skor kualitas wine.  
+- Wine dengan skor kualitas tinggi (7–8) memiliki kadar alkohol yang lebih tinggi secara konsisten dibandingkan wine dengan skor lebih rendah (3–5).  
+- **Kesimpulan**: Alkohol berperan positif terhadap persepsi kualitas wine.  
+
+## 2. Sulphates vs Quality  
+- Kandungan sulphates (sulfat) memperlihatkan tren peningkatan terhadap skor kualitas.  
+- Wine berkualitas tinggi (7–8) cenderung memiliki kandungan sulfat yang lebih tinggi.  
+- **Catatan**: Banyak outlier pada kualitas 5 dan 6, menandakan variasi besar dalam kandungan sulfat pada wine dengan skor kualitas menengah.  
+
+## 3. Citric Acid vs Quality  
+- Kandungan citric acid cenderung meningkat dari kualitas 3 ke 8.  
+- Wine dengan kualitas lebih baik mengandung lebih banyak asam sitrat, yang dapat meningkatkan rasa segar pada wine.  
+- **Catatan**: Distribusi data cukup tersebar (terutama pada kualitas 6 dan 7), menunjukkan variasi dalam proses pembuatan wine.  
+
+## 4. Volatile Acidity vs Quality  
+- Tren penurunan kadar volatile acidity seiring dengan meningkatnya skor kualitas wine.  
+- Wine berkualitas rendah (3–4) memiliki tingkat keasaman volatil yang lebih tinggi.  
+- **Kesimpulan**: Keasaman volatil yang tinggi dapat menurunkan kualitas sensorik wine.  
+
+## Kesimpulan Umum  
+Berdasarkan visualisasi:  
+- **Hubungan positif**: Alcohol, sulphates, dan citric acid berkorelasi dengan kualitas wine yang lebih tinggi.  
+- **Hubungan negatif**: Volatile acidity berkorelasi dengan penurunan kualitas wine.  
+
+Visualisasi ini membantu mengidentifikasi fitur penting untuk prediksi/klasifikasi kualitas wine.
+
+
+
 ![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/mulvariate2.png)
 
 
 
-## Data Preparation
+# Persiapan Data
 
-Tahap ini bertujuan untuk mempersiapkan data sebelum digunakan dalam pemodelan Machine Learning. Langkah-langkah yang dilakukan meliputi:
+Tahapan persiapan data dilakukan untuk mempersiapkan data sebelum proses pemodelan machine learning. Berikut langkah-langkah yang dilakukan:
 
-### 1. Pembagian Fitur dan Target
-- Variabel `quality` dipisahkan sebagai variabel target (`y`).
-- Kolom lainnya digunakan sebagai fitur (`X`).
+## 1. Encoding Fitur Kategorikal
+- Dilakukan pengecekan fitur kategorikal
+- Jika ada, diubah ke bentuk numerik menggunakan One-Hot Encoding (`pd.get_dummies()`)
 
-### 2. Encoding Variabel Target
-- ubah data ke numerik
+## 2. Menghapus Kolom ID
+- Kolom `Id` dihapus karena tidak berkontribusi dalam prediksi kualitas
+- Hanya berfungsi sebagai identifikasi unik
+- Implementasi: `df.drop(columns=['Id'])`
 
-### 3. Penanganan Imbalance Data (SMOTE)
-- Karena distribusi kelas target tidak seimbang (lebih banyak "bad" daripada "good"), digunakan teknik oversampling SMOTE (Synthetic Minority Over-sampling Technique).
-- SMOTE menghasilkan data sintetis dari kelas minoritas untuk menyeimbangkan dataset.
+## 3. Memisahkan Fitur dan Target
+- Dataset dipisahkan menjadi:
+  - Fitur (`X`): Semua variabel kecuali quality
+  - Target (`y`): Variabel `quality`
 
-### 4. Pembagian Data Latih dan Uji
-- Dataset dibagi menggunakan `train_test_split`:
-  - 80% untuk data latih
-  - 20% untuk data uji
-- Pembagian menggunakan `stratify` untuk menjaga proporsi kelas tetap seimbang di data latih dan uji.
 
-### 5. Standardisasi Fitur
-- Semua fitur numerik dinormalisasi menggunakan `StandardScaler`.
-- Standardisasi ini membuat fitur memiliki rata-rata 0 dan standar deviasi 1.
-- Tujuan: agar model yang sensitif terhadap skala (seperti KNN dan Logistic Regression) bekerja lebih baik.
+## 4. Standarisasi Fitur Numerik
+- Fitur numerik distandarisasi menggunakan `StandardScaler`:
+  - Rata-rata = 0
+  - Standar deviasi = 1
+- Penting untuk model yang sensitif terhadap skala (KNN, Logistic Regression)
+
+## 5. Reduksi Dimensi dengan PCA
+- Dilakukan Principal Component Analysis (PCA) dengan `n_components=0.95` (mempertahankan 95% varians)
+- Tujuan:
+  - Mengurangi jumlah fitur
+  - Mengatasi multikolinearitas antar fitur
+
+## 6. Binarisasi Target (Kualitas Wine)
+- Variabel `quality` (skala 3-8) dikonversi menjadi 2 kelas:
+  - `good (1)` jika quality ≥ 7
+  - `bad (0)` jika quality < 7
+- Untuk keperluan klasifikasi biner
+
+## 7. Pembagian Data Latih dan Uji
+- Data dibagi menjadi:
+  - 80% data latih
+  - 20% data uji
+- Menggunakan `stratify=y` untuk menjaga distribusi kelas target
 
 ## Modeling
 
@@ -215,7 +267,7 @@ Pada tahap pemodelan, kami akan melatih tiga model klasifikasi yang berbeda: Log
 1. Logistic Regression
 - Penjelasan: Logistic Regression adalah algoritma klasifikasi linier yang digunakan untuk memprediksi probabilitas sebuah instance termasuk dalam kelas tertentu. Meskipun namanya mengandung "regresi", ini adalah model klasifikasi. Model ini bekerja dengan mencocokkan data ke fungsi logistik (sigmoid) yang menghasilkan probabilitas antara 0 dan 1.
 - Parameter yang digunakan:
-random_state=42: Digunakan untuk memastikan hasil yang reproduktif.
+Parameter yang digunakan dalam algoritma Logistic Regression adalah random_state=42 dan max_iter=1000. Parameter random_state=42 digunakan untuk memastikan hasil yang diperoleh bersifat konsisten dan dapat direproduksi setiap kali model dijalankan. Sementara itu, max_iter=1000 ditambahkan untuk memastikan proses pelatihan model memiliki jumlah iterasi yang cukup hingga mencapai konvergensi, terutama jika dataset cukup kompleks. Dengan pengaturan parameter ini, model Logistic Regression dapat berjalan lebih stabil dan optimal. Logistic Regression sendiri memiliki keunggulan dalam hal kecepatan pelatihan, kemudahan interpretasi hasil, serta performa yang baik pada data yang dapat dipisahkan secara linier..
 Kelebihan: Cepat, mudah diinterpretasikan, dan performa baik untuk dataset yang terpisah secara linier.
 - Kekurangan: Asumsi linieritas, mungkin tidak berkinerja baik pada dataset yang sangat kompleks atau non-linier.
   
@@ -266,13 +318,13 @@ $$\text{Accuracy} = \frac{\text{TP + TN}}{\text{TN + TP + FN + FP}} \times 100\%
 
 Rumus ini memecah akurasi menjadi rasio antara data yang diklasifikasikan dengan benar (TP dan TN) dengan jumlah total data. Mengalikan dengan 100% mengubah rasio menjadi persentase.
 
-Berikut hasil accuracy 5 buah model yang latih:
+Berikut hasil accuracy 3 buah model yang latih:
 
 | Model | Accuracy |
 | ------ | ------ | 
-| RandomForest  | 71.18% |
-| Logistic Regression | 64.63% |
-| KNN | 57.21% |
+| RandomForest  |  91.27% |
+| Logistic Regression | 87.77% |
+| KNN | 87.77% |
 
 
 Tabel 3. Hasil Accuracy
@@ -282,3 +334,78 @@ Tabel 3. Hasil Accuracy
 Dilihat dari Tabel Hasil Accuracy dan Gambar Visualisasi Accuracy Model, dapat diketahui bahwa model dengan algoritma Random Forest memiliki nilai akurasi tertinggi yaitu 71.18%. Oleh karena itu, model ini dipilih sebagai model terbaik untuk digunakan dalam memprediksi kualitas Wine.
 
 Model Random Forest dipilih karena memiliki performa yang paling unggul dibandingkan model lainnya seperti Logistic Regression dan K-Nearest Neighbors (KNN). Selain memberikan akurasi yang lebih tinggi, Random Forest juga dikenal tangguh terhadap overfitting dan mampu menangani data dengan dimensi yang kompleks secara efektif.
+
+
+## Problem solve dengan Business Understanding
+
+Pada tahap evaluasi ini, dilakukan penilaian terhadap efektivitas model yang dibangun dalam menjawab permasalahan bisnis yang telah dirumuskan. Evaluasi mencakup pencapaian terhadap *problem statement*, *goals*, dan dampak dari *solution statements* yang diimplementasikan.
+
+---
+
+## ✅ Apakah sudah menjawab setiap *Problem Statement*?
+
+### 1. Bagaimana cara memprediksi kualitas wine (baik atau buruk) berdasarkan fitur kimia?
+✔ **Sudah terjawab.**  
+Model klasifikasi yang dibangun (Logistic Regression, K-Nearest Neighbors, dan Random Forest) mampu memprediksi kualitas wine berdasarkan fitur kimiawi seperti kadar alkohol, keasaman volatil, sulphates, dan citric acid.  
+Target `quality` berhasil dibinarisasi menjadi dua kelas:
+- `good (1)` jika `quality ≥ 7`
+- `bad (0)` jika `quality < 7`
+
+### 2. Model Machine Learning apa yang memberikan performa terbaik dalam memprediksi kualitas wine?
+✔ **Sudah terjawab.**  
+Dari tiga model yang diuji, **Random Forest** menunjukkan performa tertinggi dengan akurasi sebesar **91.27%**, mengungguli:
+- Logistic Regression: **87.77%**
+- KNN: **87.77%**
+
+Model ini dipilih sebagai model terbaik berdasarkan hasil evaluasi dengan metrik **akurasi** serta **F1-score** yang lebih baik pada kelas minoritas (*good wine*).
+
+---
+
+## 🎯 Apakah berhasil mencapai setiap *Goal* yang diharapkan?
+
+### 1. Membuat model klasifikasi wine menjadi “good” dan “bad”
+✔ **Tercapai.**  
+Model berhasil mengklasifikasikan kualitas wine ke dalam dua kelas. Hasil klasifikasi menunjukkan bahwa model dapat mengenali pola dari fitur-fitur kimia terhadap persepsi kualitas wine.
+
+### 2. Mengidentifikasi model Machine Learning terbaik berdasarkan metrik evaluasi
+✔ **Tercapai.**  
+Random Forest dipilih sebagai model terbaik karena memberikan akurasi tertinggi dan performa yang lebih seimbang antara precision dan recall, terutama dalam mengenali wine berkualitas baik.  
+Hal ini sangat penting untuk mendukung keputusan produksi dan distribusi dalam industri wine.
+
+---
+
+## 💡 Apakah setiap *Solution Statement* yang direncanakan berdampak?
+
+### 🔹 Solusi 1: Menggunakan beberapa algoritma klasifikasi (Logistic Regression, KNN, Random Forest)
+✔ **Berdampak signifikan.**  
+Perbandingan tiga algoritma ini memberikan insight penting mengenai kekuatan dan kelemahan masing-masing model.  
+Hal ini memungkinkan pemilihan model terbaik yang sesuai dengan karakteristik data wine dan tujuan bisnis.  
+**Random Forest** terbukti unggul dalam hal akurasi dan kestabilan prediksi.
+
+### 🔹 Solusi 2: Hyperparameter tuning untuk model terbaik (Random Forest)
+✔ **Memberikan dampak nyata.**  
+Proses tuning menggunakan `GridSearchCV` meningkatkan performa model secara keseluruhan.  
+Kombinasi optimal dari hyperparameter seperti:
+- `n_estimators`
+- `max_features`
+- `min_samples_split`
+- `min_samples_leaf`
+
+...memberikan peningkatan akurasi dan kemampuan generalisasi model.  
+Ini penting agar model tetap andal saat digunakan di data baru dalam praktik nyata.
+
+---
+
+## 📌 Kesimpulan Evaluasi
+
+Model prediktif yang dibangun **berhasil menjawab tantangan utama dalam Business Understanding**, yakni:
+
+> ✨ *Mengotomatisasi proses penilaian kualitas wine dengan akurasi tinggi.*
+
+Model **Random Forest**, sebagai model terbaik:
+- Akurat
+- Stabil
+- Mampu menangkap fitur penting yang memengaruhi kualitas wine (seperti alkohol dan keasaman volatil)
+
+Dengan demikian, solusi ini **berpotensi menghemat biaya dan waktu** dalam proses *quality control* industri wine, serta **meningkatkan efisiensi operasional** secara keseluruhan.
+
