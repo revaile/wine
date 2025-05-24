@@ -44,7 +44,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 | ------ | ------ |
 | Title | _Wine Quality Dataset_ |
 | Source | [Kaggle](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset/data) |
-| Maintainer | [Nidula Elgiriyewithana ⚡](https://www.kaggle.com/nelgiriyewithana) |
+| Maintainer | [M Yasser H](https://www.kaggle.com/yasserh) |
 | License | Other (specified in description) |
 | Visibility | Publik |
 | Tags | _Computer Science, Education, Food, Data Visualization, Classification, Exploratory Data Analysis_ |
