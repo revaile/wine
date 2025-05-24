@@ -38,7 +38,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 
 ## Data Understanding
 
-
+## Informasi Dataset Wine Quality
 
 | Jenis | Keterangan |
 | ------ | ------ |
@@ -50,7 +50,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 | Tags | _Computer Science, Education, Food, Data Visualization, Classification, Exploratory Data Analysis_ |
 | Usability | 10.00 |
 
-## Contoh Dataset Wine Quality
+## Informasi Dataset Wine Quality
 
 | Id | Fixed Acidity | Volatile Acidity | Citric Acid | Residual Sugar | Chlorides | Free Sulfur Dioxide | Total Sulfur Dioxide | Density | pH  | Sulphates | Alcohol | Quality |
 |----|----------------|------------------|-------------|----------------|-----------|----------------------|-----------------------|---------|-----|------------|---------|---------|
