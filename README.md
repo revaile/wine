@@ -169,6 +169,8 @@ Distribusi: alcohol
 
 Berdasarkan bar chart "Distribusi Kualitas Wine", terlihat jelas bahwa mayoritas sampel wine terkonsentrasi pada kualitas 5 dan 6, dengan jumlah sampel yang sangat dominan mendekati 500 untuk kualitas 5 dan sedikit di bawahnya untuk kualitas 6. Sementara itu, kualitas 7 memiliki jumlah sampel yang lebih sedikit, dan kualitas ekstrem seperti 3, 4, dan 8 hanya diwakili oleh sangat sedikit sampel, mengindikasikan ketidakseimbangan distribusi kelas yang signifikan dalam dataset ini.
 
+
+### EDA - Mulvariate Analysis
 ### Matriks Korelasi
 
 ![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/matrix.png)
