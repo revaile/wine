@@ -66,24 +66,10 @@ Tabel 1. EDA Deskripsi Variabel
 
 Dilihat dari _Tabel 1. EDA Deskripsi Variabel_ dataset ini telah di *bersihkan* dan *normalisasi* terlebih dahulu oleh pembuat, sehingga mudah digunakan dan ramah bagi pemula. 
 - Dataset berupa CSV (Comma-Seperated Values).
-- Dataset memiliki 4001 sample dengan 9 fitur.
-- Dataset memiliki 7 fitur bertipe float64 dan 2 fitur bertipe object.
-- Terdapat 1 missing value dalam dataset.
-### Variable - variable pada dataset
-- `A_id` : Identifikasi unik untuk setiap buah.
-- `Size` : Ukuran buah.
-- `Weight` : Berat buah.
-- `Sweetness` : Tingkat kemanisan buah.
-- `Crunchiness` : Tekstur yang menunjukkan kerenyahan buah.
-- `Juiciness` : Tingkat kesegaran buah.
-- `Ripeness` : Tahap kematangan buah.
-- `Acidity` : Tingkat keasaman buah.
-- `Quality` : Kualitas buah secara keseluruhan, baik atau buruk.
-
-Dari ke 9 fitur dapat dilihat bahwa fitur `A_id` tidak mempengaruhi kualitas buah hingga akan di hapus.
-
-Data yang digunakan dalam proyek ini berasal dari dataset "Wine Quality" yang tersedia di Kaggle (https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009).
-Dataset ini berisi fitur-fitur fisikokimia dari wine dan juga rating kualitas yang diberikan oleh panelis ahli. Dataset ini telah dimodifikasi untuk tujuan klasifikasi, dimana rating kualitas diubah menjadi dua kategori: "good" (kualitas baik) dan "bad" (kualitas buruk).
+- Dataset memiliki Jumlah baris 1143 dan kolom 13
+- Dataset memiliki 11 fitur bertipe float64 dan 2 fitur bertipe int.
+- Tidak ada nilai missing pada semua kolom, yang berarti data sudah cukup bersih.
+- Tidak ada nilai mising value.
 
 Variabel-variabel pada dataset kualitas wine adalah sebagai berikut:
 
