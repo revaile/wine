@@ -92,7 +92,7 @@ Variabel-variabel pada dataset kualitas wine adalah sebagai berikut:
 |                       | - `good` : jika kualitas >= 7                                             |
 |                       | - `bad`  : jika kualitas < 7                                              |
 
-
+### EDA - Univariate Analysis
 ### Analisis Distribusi Fitur 
 
 ![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/unvariate.png)
