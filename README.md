@@ -47,7 +47,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 | Maintainer | [M Yasser H](https://www.kaggle.com/yasserh) |
 | License | Other (specified in description) |
 | Visibility | Publik |
-| Tags | _Computer Science, Education, Food, Data Visualization, Classification, Exploratory Data Analysis_ |
+| Tags | _Earth and Nature, Food, Tabular, Beginer, Classification, Alcohol_ |
 | Usability | 10.00 |
 
 ## Informasi Dataset Wine Quality
