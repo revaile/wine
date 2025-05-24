@@ -42,8 +42,8 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 
 | Jenis | Keterangan |
 | ------ | ------ |
-| Title | _Apple Quality_ |
-| Source | [Kaggle](https://www.kaggle.com/datasets/nelgiriyewithana/apple-quality/data) |
+| Title | _Wine Quality Dataset_ |
+| Source | [Kaggle](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset/data) |
 | Maintainer | [Nidula Elgiriyewithana ⚡](https://www.kaggle.com/nelgiriyewithana) |
 | License | Other (specified in description) |
 | Visibility | Publik |
