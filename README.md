@@ -64,7 +64,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 
 Tabel 1. EDA Deskripsi Variabel
 
-Dilihat dari _Tabel 1. EDA Deskripsi Variabel_ dataset ini telah di *bersihkan* dan *normalisasi* terlebih dahulu oleh pembuat, sehingga mudah digunakan dan ramah bagi pemula. 
+Dilihat dari _Tabel 1. EDA Deskripsi Variabel_ 
 - Dataset berupa CSV (Comma-Seperated Values).
 - Dataset memiliki Jumlah baris 1143 dan kolom 13
 - Dataset memiliki 11 fitur bertipe float64 dan 2 fitur bertipe int.
