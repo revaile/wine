@@ -70,7 +70,7 @@ Dilihat dari _Tabel 1. EDA Deskripsi Variabel_
 - Dataset memiliki Jumlah baris 1143 dan kolom 13
 - Dataset memiliki 11 fitur bertipe float64 dan 2 fitur bertipe int.
 - Tidak ada nilai missing pada semua kolom, yang berarti data sudah cukup bersih.
-- Tidak ada nilai mising value.
+- Tidak ada nilai duplikasi.
 
 Variabel-variabel pada dataset kualitas wine adalah sebagai berikut:
 

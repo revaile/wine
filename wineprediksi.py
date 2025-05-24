@@ -200,6 +200,13 @@ df_prep = df.drop(columns=['Id'])
 X = df_prep.drop('quality', axis=1)
 y = df_prep['quality']
 
+"""**Binarisasi target quality**
+
+**Anggap nilai quality >= 7 dianggap "good" (1), lainnya "bad" (0)**
+"""
+
+y = y.apply(lambda x: 1 if x >= 7 else 0)
+
 """**Standarisasi**"""
 
 # Standardisasi fitur
@@ -244,7 +251,7 @@ stratify=y: menjaga proporsi distribusi kelas tetap seimbang.
 """
 
 # Logistic Regression
-lr = LogisticRegression(max_iter=1000)
+lr = LogisticRegression(max_iter=1000, random_state=42)
 lr.fit(X_train, y_train)
 
 """Membuat model klasifikasi menggunakan Logistic Regression.
@@ -347,9 +354,28 @@ accuracies = [
 summary_df = pd.DataFrame({'Model': model_names, 'Akurasi': accuracies})
 print(summary_df.sort_values(by='Akurasi', ascending=False))
 
-"""Random Forest adalah model dengan performa terbaik di antara ketiganya, dengan akurasi sekitar 71.18%.
+summary_df_sorted = summary_df.sort_values(by='Akurasi', ascending=False)
+summary_df_sorted['Akurasi (%)'] = summary_df_sorted['Akurasi'] * 100
 
-Logistic Regression berada di posisi kedua dengan akurasi sekitar 64.63%.
+# Plot
+plt.figure(figsize=(8, 5))
+sns.barplot(x='Model', y='Akurasi (%)', hue='Model', data=summary_df_sorted, palette='viridis', dodge=False, legend=False)
+plt.ylim(0, 100)
+plt.title('Perbandingan Akurasi Model (%)')
+plt.xlabel('Model')
+plt.ylabel('Akurasi (%)')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-KNN memiliki akurasi paling rendah, sekitar 57.21%.
+# Tambahkan label angka persentase di atas bar
+for index, value in enumerate(summary_df_sorted['Akurasi (%)']):
+    plt.text(x=index, y=value + 1, s=f'{value:.2f}%', ha='center')
+
+plt.tight_layout()
+plt.show()
+
+"""Random Forest adalah model dengan performa terbaik di antara ketiganya, dengan akurasi sekitar 91.27%.
+
+Logistic Regression akurasi sekitar 87.77%.
+
+KNN memiliki akurasi, sekitar 87.77%.
 """
