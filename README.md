@@ -177,6 +177,11 @@ Berdasarkan bar chart "Distribusi Kualitas Wine", terlihat jelas bahwa mayoritas
 
 Matriks Korelasi menunjukkan hubungan antar fitur dan quality wine. Alcohol (0.48) dan sulphates (0.26) berkorelasi positif dengan kualitas. Sebaliknya, volatile acidity (-0.41), chlorides (-0.12), total sulfur dioxide (-0.18), dan density (-0.18) berkorelasi negatif. Fitur lainnya memiliki korelasi lemah atau tidak signifikan dengan quality.
 
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/mulvariate1.png)
+![image](https://raw.githubusercontent.com/revaile/wine/refs/heads/main/assets/mulvariate2.png)
+
+
+
 ## Data Preparation
 
 Tahap ini bertujuan untuk mempersiapkan data sebelum digunakan dalam pemodelan Machine Learning. Langkah-langkah yang dilakukan meliputi:
