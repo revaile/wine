@@ -37,6 +37,7 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 2. **Solusi 2**: Melakukan improvement pada model baseline dengan hyperparameter tuning: Setelah mendapatkan model baseline dari setiap algoritma, kami akan melakukan hyperparameter tuning untuk mengoptimalkan performa model terbaik. Metrik evaluasi seperti akurasi, presisi, recall, dan F1-Score akan digunakan untuk mengukur peningkatan performa dan memilih model terbaik.
 
 ## Data Understanding
+### EDA - Deskripsi Variabel
 
 ## Informasi Dataset Wine Quality
 
@@ -91,13 +92,6 @@ Variabel-variabel pada dataset kualitas wine adalah sebagai berikut:
 |                       | - `good` : jika kualitas >= 7                                             |
 |                       | - `bad`  : jika kualitas < 7                                              |
 
-### Exploratory Data Analysis:
-
-Dari eksplorasi data awal, dapat dilihat bahwa:
-
-- Dataset memiliki 1143 baris dan 13 kolom.
-- Tidak ada nilai missing pada semua kolom, yang berarti data sudah cukup bersih.
-- Sebaran kelas pada variabel quality menunjukkan adanya ketidakseimbangan kelas. Mayoritas wine diklasifikasikan sebagai "bad" (1382 sampel), sedangkan hanya sebagian kecil yang "good" (217 sampel). Hal ini perlu ditangani pada tahap data preparation untuk menghindari bias pada model.
 
 ### Analisis Distribusi Fitur 
 
