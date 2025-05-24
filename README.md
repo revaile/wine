@@ -50,17 +50,6 @@ Untuk mencapai tujuan di atas, proyek ini akan mengajukan beberapa pendekatan so
 | Tags | _Computer Science, Education, Food, Data Visualization, Classification, Exploratory Data Analysis_ |
 | Usability | 10.00 |
 
-Berikut informasi pada dataset: 
-Data yang digunakan dalam pembuatan model merupakan data primer, data ini didapat dari sebuah perusahaan pertanian Amerika, yang disediakan secara publik di kaggle dengan nama datasets yaitu: _Apple Quality_
-
-| A_id | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
-| ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
-| 0.0 | -3.970049 |-2.512336 | 5.346330 |-1.012009 | 1.844900 |0.329840	| -0.491590483  |good |
-| 1.0 | -1.195217 |-2.839257 | 3.664059 |1.588232 | 0.853286 | 0.867530 | -0.722809367  |good |
-| 2.0 | -0.292024 |	-1.351282 | -1.738429 | -0.342616 | 2.838636 |-0.038033	| 2.621636473  |bad |
-| 3.0 | -0.657196 |-2.271627 | 1.324874 |-0.097875 | 3.637970 |-3.413761	| 0.790723217  |good |
-| 4.0 | 1.364217 |-1.296612 | -0.384658 | -0.553006 | 3.030874 | -1.303849	| 0.501984036  |good |
-
 
 Tabel 1. EDA Deskripsi Variabel
 
